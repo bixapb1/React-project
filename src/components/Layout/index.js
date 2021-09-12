@@ -1,30 +1,24 @@
 import s from "./style.module.css";
 
-const Layout = ({ title, descr, urlBg, colorBg }) => {
+const Layout = ({ title, urlBg, colorBg, children }) => {
   const styleBg = {
     background: urlBg ? `url(${urlBg}) ` : colorBg,
     backgroundSize: "cover",
+    backgroundRepeat: "no-repeat",
+    backgroundPosition: "centre",
   };
   return (
     <section className={s.root}>
       <div style={styleBg} className={s.wrapper}>
-        <Article title={title} descr={descr} />
+        <article>
+          <div className={s.title}>
+            <h3> {title}</h3>
+            <span className={s.separator}></span>
+          </div>
+          <div className={`${s.desc} ${s.full}`}>{children}</div>
+        </article>
       </div>
     </section>
-  );
-};
-
-const Article = ({ title, descr }) => {
-  return (
-    <article>
-      <div className={s.title}>
-        <h3> {title}</h3>
-        <span className={s.separator}></span>
-      </div>
-      <div className={`${s.desc}, ${s.full}`}>
-        <p>{descr}</p>
-      </div>
-    </article>
   );
 };
 
